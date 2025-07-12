@@ -20,10 +20,10 @@ public class AlumnoController {
 
         Alumno alumno1, alumno2, alumno3, alumno4;
 
-        alumno1 = new Alumno(2020100292, "Juan", "Pérez");
-        alumno2 = new Alumno(2020100293, "Ana", "Gómez");
-        alumno3 = new Alumno(2020100294, "Luis", "Martínez");
-        alumno4 = new Alumno(2020100295, "María", "López");
+        alumno1 = new Alumno(2020100292l, "Juan", "Pérez");
+        alumno2 = new Alumno(2020100293l, "Ana", "Gómez");
+        alumno3 = new Alumno(2020100294l, "Luis", "Martínez");
+        alumno4 = new Alumno(2020100295l, "María", "López");
        // Alumno[] alumnos = {alumno1, alumno2, alumno3, alumno4};
        /*
         for (Alumno item : alumnos) {
