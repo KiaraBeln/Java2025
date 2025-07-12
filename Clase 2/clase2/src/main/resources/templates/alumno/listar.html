@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado Alumnos</title>
+</head>
+<body>
+
+    <h1 style="color:blueviolet;" th:text="${mensaje}">Listado de Alumnos</h1>
+
+    <ul>
+        <li th:each="alumno : ${listado}"
+            th:text="|${alumno.nombre} ${alumno.apellido} - Matrícula: ${alumno.matricula}|">
+        </li>
+    </ul>
+
+    <p>
+        Mejor Alumn@: <span th:text="${mejorAlumno}">Nombre del Mejor Alumno</span>
+    </p>
+
+</body>
+</html>
