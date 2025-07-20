@@ -58,7 +58,8 @@ public class AlumnoController {
             System.out.println("Matricula: " + entry.getKey() +
              ", Alumno: " + entry.getValue().getNombre() + " " + entry.getValue().getApellido());
          }
-        
+         
+        System.out.println("Obteniendo Clave " + alumno1.obtenerClave() + " del alumno: " + alumno1.getNombre());
 
         model.addAttribute( "mensaje", "Listado de alumnos" );
         model.addAttribute("listado", listado);
