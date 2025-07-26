@@ -4,11 +4,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kiaratorales.clase2.repository.ProfesorRepository;
 import com.kiaratorales.dto.Profesor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,8 @@ public class ProfesorRestController {
     private String claveSistema;
 
     public List<Profesor> lista = new ArrayList<>();
+   @Autowired 
+    private ProfesorRepository repository;
     
     @GetMapping("/mensaje/{saludo}")
     public String saludo(@PathVariable String saludo) {//Recibe un parámetro de la URL
@@ -72,26 +76,26 @@ public class ProfesorRestController {
     }
 
     @PutMapping("/actualizar/{id}")
-    public Profesor actualizaProfesor(@RequestBody Profesor profesor, @PathVariable Long id) {
+    public ResponseEntity<?> actualizaProfesor(@RequestBody Profesor profesor, @PathVariable Long id) {
         for(Profesor aux: lista){
             if(aux.getCodigoProfesor().equals(id)) {
                 aux.setNombre(profesor.getNombre());
                 aux.setApellido(profesor.getApellido());
                 aux.setCodigoProfesor(profesor.getCodigoProfesor());
-                return aux;
+                return ResponseEntity.ok("Profesor actualizado con éxito");
             }
         }
-      return profesor;
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró el profesor con ID: " + id);
     }
     
     @GetMapping("/obtener/{clave}")
-    public Profesor getProfesor(@PathVariable Long clave) {
+    public ResponseEntity<?> getProfesor(@PathVariable Long clave) {
         for (Profesor profesor : lista) {
             if (profesor.obtenerClave().equals(clave)) {
-                return profesor;
+                return ResponseEntity.ok(profesor);
             }
         }
-        return null; 
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró el profesor con clave: " + clave); 
     }
 
     @DeleteMapping("/eliminar/{clave}")
